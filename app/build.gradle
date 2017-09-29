@@ -23,12 +23,19 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
+
     testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.8.9'
+    testImplementation "com.nhaarman:mockito-kotlin:1.5.0"
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    implementation "android.arch.lifecycle:extensions:1.0.0-beta1"
+    testImplementation "android.arch.core:core-testing:1.0.0-beta1"
+    kapt "android.arch.lifecycle:compiler:1.0.0-beta1"
 
     implementation "android.arch.persistence.room:runtime:1.0.0-beta1"
     kapt "android.arch.persistence.room:compiler:1.0.0-beta1"
