@@ -2,6 +2,7 @@ package com.combah.dindin2.room
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import com.combah.dindin2.room.dao.MovementDao
 import com.combah.dindin2.room.entities.RoomMovement
@@ -39,6 +40,11 @@ class RoomMovementRepositoryTest {
         whenever(roomMovementLiveData.observeForever(any<Observer<List<RoomMovement>?>>())).then {
             (it.arguments[0] as Observer<List<RoomMovement>?>).onChanged(roomMovementList)
         }
+
+        whenever(movementDao.incomeInPeriod(any(), any()))
+                .thenReturn(MutableLiveData<Double>().apply { value = 9.35 })
+        whenever(movementDao.expenseInPeriod(any(), any()))
+                .thenReturn(MutableLiveData<Double>().apply { value = 11.99 })
     }
 
     @Test
@@ -57,6 +63,27 @@ class RoomMovementRepositoryTest {
             }
             equal != null
         })
+    }
+
+    @Test
+    fun incomeShouldBeDaoIncome() {
+        val repository = RoomMovementRepository(movementDao)
+        val income = repository.incomeInPeriod(Long.MIN_VALUE, Long.MAX_VALUE)
+        assertEquals(9.35, income.value)
+    }
+
+    @Test
+    fun expenseShouldBeDaoExpense() {
+        val repository = RoomMovementRepository(movementDao)
+        val expense = repository.expenseInPeriod(Long.MIN_VALUE, Long.MAX_VALUE)
+        assertEquals(11.99, expense.value)
+    }
+
+    @Test
+    fun totalShouldBeIncomeMinusExpense() {
+        val repository = RoomMovementRepository(movementDao)
+        val total = repository.totalInPeriod(Long.MIN_VALUE, Long.MAX_VALUE)
+        assertEquals(-2.64, total.value ?: 0.0, 0.001)
     }
 
 }
