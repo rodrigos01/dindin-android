@@ -5,7 +5,6 @@ import com.combah.dindin2.repository.MovementRepository
 import com.combah.dindin2.room.dao.MovementDao
 import com.combah.dindin2.room.entities.RoomMovement
 import com.combah.dindin2.util.map
-import com.combah.dindin2.util.with
 
 class RoomMovementRepository(private val movementDao: MovementDao) : MovementRepository {
 
@@ -18,10 +17,8 @@ class RoomMovementRepository(private val movementDao: MovementDao) : MovementRep
     override fun expenseInPeriod(start: Long, end: Long) =
             movementDao.expenseInPeriod(start, end)
 
-    override fun totalInPeriod(start: Long, end: Long) = incomeInPeriod(start, end)
-            .with(expenseInPeriod(start, end)) { income, expense ->
-                income?.minus(expense ?: 0.0)
-            }
+    override fun totalInPeriod(start: Long, end: Long) =
+            movementDao.totalInPeriod(start, end)
 
     private fun List<RoomMovement>.toMovementList() = map { roomMovement ->
         Movement(

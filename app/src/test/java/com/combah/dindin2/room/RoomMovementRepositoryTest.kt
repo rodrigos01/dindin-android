@@ -47,6 +47,8 @@ class RoomMovementRepositoryTest {
                 .thenReturn(MutableLiveData<Double>().apply { value = 9.35 })
         whenever(movementDao.expenseInPeriod(any(), any()))
                 .thenReturn(MutableLiveData<Double>().apply { value = 11.99 })
+        whenever(movementDao.totalInPeriod(any(), any()))
+                .thenReturn(MutableLiveData<Double>().apply { value = -2.64 })
     }
 
     @Test
@@ -84,10 +86,10 @@ class RoomMovementRepositoryTest {
     }
 
     @Test
-    fun totalShouldBeIncomeMinusExpense() {
+    fun totalShouldBeDaoTotal() {
         val repository = RoomMovementRepository(movementDao)
         val total = repository.totalInPeriod(Long.MIN_VALUE, Long.MAX_VALUE)
-        assertEquals(-2.64, total.value ?: 0.0, 0.001)
+        assertEquals(-2.64, total.value)
     }
 
 }
