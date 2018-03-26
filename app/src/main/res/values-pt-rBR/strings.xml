@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="description">Descrição</string>
+    <string name="value">Valor</string>
+    <string name="date">Data</string>
+    <string name="save">salvar</string>
+    <string name="invalid_value">Valor Invalido</string>
+    <string name="month_total">Total do Mês</string>
+    <string name="total_income">Total de Recebimentos</string>
+    <string name="total_expenses">Total de Gastos</string>
+    <string name="title_movement_activity">Movimentação</string>
+    <string name="expense">Gasto</string>
+    <string name="income">Recebimento</string>
+</resources>

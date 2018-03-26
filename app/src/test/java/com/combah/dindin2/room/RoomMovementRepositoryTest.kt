@@ -4,6 +4,7 @@ import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
+import com.combah.dindin2.data.Movement
 import com.combah.dindin2.room.dao.MovementDao
 import com.combah.dindin2.room.entities.RoomMovement
 import com.nhaarman.mockito_kotlin.any
@@ -17,6 +18,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.junit.MockitoJUnitRunner
 import java.util.*
+import java.util.concurrent.ArrayBlockingQueue
+import java.util.concurrent.TimeUnit
 
 @RunWith(MockitoJUnitRunner::class)
 class RoomMovementRepositoryTest {
@@ -36,7 +39,6 @@ class RoomMovementRepositoryTest {
     @Before
     fun setUp() {
         whenever(movementDao.movementsInPeriod(any(), any())).thenReturn(roomMovementLiveData)
-        whenever(roomMovementLiveData.value).thenReturn(roomMovementList)
         whenever(roomMovementLiveData.observeForever(any<Observer<List<RoomMovement>?>>())).then {
             (it.arguments[0] as Observer<List<RoomMovement>?>).onChanged(roomMovementList)
         }
@@ -49,12 +51,14 @@ class RoomMovementRepositoryTest {
 
     @Test
     fun movementsShouldHaveSameValues() {
-        val roomMovements = movementDao.movementsInPeriod(Long.MIN_VALUE, Long.MAX_VALUE)
         val repository = RoomMovementRepository(movementDao)
-        val result = repository.movementsInPeriod(Long.MIN_VALUE, Long.MAX_VALUE)
-        assertEquals(roomMovements.value?.size, result.value?.size)
-        assertNotNull(roomMovements.value?.find { roomMovement ->
-            val equal = result.value?.find { movement ->
+
+        val queue = ArrayBlockingQueue<List<Movement>>(1)
+        repository.movementsInPeriod(Long.MIN_VALUE, Long.MAX_VALUE).observeForever { queue.add(it) }
+        val result = queue.poll(10, TimeUnit.SECONDS)
+        assertEquals(roomMovementList.size, result?.size)
+        assertNotNull(roomMovementList.find { roomMovement ->
+            val equal = result?.find { movement ->
                 movement.id == roomMovement.id
                         && movement.date == roomMovement.date
                         && movement.income == roomMovement.income

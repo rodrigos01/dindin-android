@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">DinDin2</string>
+    <string name="app_name" translatable="false">DinDin</string>
+    <string name="description">Description</string>
+    <string name="value">Value</string>
+    <string name="date">Date</string>
+    <string name="save">save</string>
+    <string name="invalid_value">Invalid Value</string>
+    <string name="month_total">Month Total</string>
+    <string name="total_income">Total Income</string>
+    <string name="total_expenses">Total Expenses</string>
+    <string name="title_movement_activity">Movement</string>
+    <string name="expense">Expense</string>
+    <string name="income">Income</string>
+    <string name="monthly">Monthly</string>
+    <string name="until">until</string>
+    <string name="forever">forever</string>
+    <string name="only_this_occurrence">Only this occurrence</string>
+    <string name="all_occurrences">All Occurrences</string>
+    <string name="save_all_alert_message">Do you wish to modify occurrences of this movement?</string>
 </resources>

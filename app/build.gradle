@@ -3,12 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.combah.dindin2"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -19,12 +18,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation 'com.android.support:design:27.1.0'
+    implementation 'com.android.support:recyclerview-v7:27.1.0'
+    implementation 'com.android.support:cardview-v7:27.1.0'
+    implementation 'com.android.support:support-v4:27.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.8.9'
@@ -33,12 +40,12 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    implementation "android.arch.lifecycle:extensions:1.0.0-beta1"
-    testImplementation "android.arch.core:core-testing:1.0.0-beta1"
-    kapt "android.arch.lifecycle:compiler:1.0.0-beta1"
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    testImplementation "android.arch.core:core-testing:1.1.1"
+    kapt "android.arch.lifecycle:compiler:1.1.1"
 
-    implementation "android.arch.persistence.room:runtime:1.0.0-beta1"
-    kapt "android.arch.persistence.room:compiler:1.0.0-beta1"
+    implementation "android.arch.persistence.room:runtime:1.1.0-beta1"
+    kapt "android.arch.persistence.room:compiler:1.1.0-beta1"
 }
 repositories {
     mavenCentral()

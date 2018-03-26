@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.combah.dindin2.viewmodel.MovementViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="@color/white"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@{viewModel.date}"
+            android:textColor="@color/textColor"
+            android:textSize="16sp"
+            tools:text="04/05/2016" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@{viewModel.description}"
+            android:textColor="@color/textColorSecondary"
+            android:textSize="16sp"
+            tools:text="Corn Flakes" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@{viewModel.value}"
+            android:textColor="@{viewModel.valueColor}"
+            android:textSize="16sp"
+            tools:text="R$ 300,00" />
+
+    </LinearLayout>
+</layout>
