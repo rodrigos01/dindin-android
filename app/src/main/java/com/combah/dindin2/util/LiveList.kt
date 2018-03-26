@@ -86,3 +86,12 @@ abstract class LiveList<E>(private val diffCallback: DiffCallback<E>? = null) : 
         }
     }
 }
+
+fun <T> LiveData<List<T>>.asLiveList(diffCallback: LiveList.DiffCallback<T>? = null): LiveList<T> {
+    val liveList = LiveMutableList(diffCallback = diffCallback)
+    observeForever {
+        liveList.clear()
+        it?.let { liveList.addAll(it) }
+    }
+    return liveList
+}
