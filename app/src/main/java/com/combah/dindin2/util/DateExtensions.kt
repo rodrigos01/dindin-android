@@ -37,3 +37,7 @@ fun Calendar.setTimeToEndOfDay() {
     set(java.util.Calendar.SECOND, 59)
     set(java.util.Calendar.MILLISECOND, 999)
 }
+
+fun Calendar.move(field: Int, offset: Int) {
+    set(field, get(field) + offset)
+}

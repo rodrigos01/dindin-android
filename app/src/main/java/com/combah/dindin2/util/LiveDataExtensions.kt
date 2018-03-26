@@ -2,6 +2,7 @@ package com.combah.dindin2.util
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
 
 fun <T, R> LiveData<T>.map(block: (T?) -> R?): LiveData<R> {
     val newLiveData = MutableLiveData<R>()
@@ -39,4 +40,13 @@ fun <T, R> LiveData<T>.then(block: (T?) -> LiveData<R>?): LiveData<R> {
         }
     }
     return newLiveData
+}
+
+fun <T> LiveData<T>.observeOnce(block: (T?) -> Unit) {
+    this.observeForever(object : Observer<T> {
+        override fun onChanged(t: T?) {
+            removeObserver(this)
+            block(t)
+        }
+    })
 }

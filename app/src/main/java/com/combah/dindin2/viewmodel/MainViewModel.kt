@@ -1,7 +1,6 @@
 package com.combah.dindin2.viewmodel
 
 
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.combah.dindin2.R
 import com.combah.dindin2.repository.MovementRepository
@@ -11,8 +10,8 @@ import java.util.*
 
 class MainViewModel(private val repository: MovementRepository) : ViewModel() {
 
-    private val initialTime = MutableLiveData<Date>()
-    private val endTime = MutableLiveData<Date>()
+    private val initialTime = MutableLiveData(Calendar.getInstance().time.getInitialDateOfMonth())
+    private val endTime = MutableLiveData(Calendar.getInstance().time.getEndDateOfMonth())
     private val dates = initialTime.with(endTime) { initial, end -> Pair(initial?.time, end?.time) }
             .map { it?.takeIfHasBoth() }
     private val totalValue = dates.then { it?.let { repository.totalInPeriod(it.first, it.second) } }
@@ -31,6 +30,19 @@ class MainViewModel(private val repository: MovementRepository) : ViewModel() {
     fun setPeriod(initial: Date, end: Date) {
         initialTime.value = initial
         endTime.value = end
+    }
+
+    fun previousPeriod() = movePeriod(-1)
+    fun nextPeriod() = movePeriod(1)
+
+    private fun movePeriod(offset: Int) {
+        dates.observeOnce {
+            val initial = it?.first?.let { Date(it) }?.asCalendar()?.apply { move(Calendar.MONTH, offset) }?.time
+            val end = it?.second?.let { Date(it) }?.asCalendar()?.apply { move(Calendar.MONTH, offset) }?.time
+            if (initial != null && end != null) {
+                setPeriod(initial, end)
+            }
+        }
     }
 
     private fun makeMonthString(initial: Date): String {

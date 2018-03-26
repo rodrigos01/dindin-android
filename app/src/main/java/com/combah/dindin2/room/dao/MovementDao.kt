@@ -17,6 +17,6 @@ interface MovementDao {
     @Query("SELECT SUM(value) from movements where date BETWEEN :start AND :end and income = 0")
     fun expenseInPeriod(start: Long, end: Long): LiveData<Double>
 
-    @Query("SELECT SUM(i.value) - SUM(e.value) from movements i, movements e where i.date BETWEEN :start AND :end and i.income = 1 and e.date BETWEEN :start AND :end and e.income = 0")
+    @Query("SELECT SUM(i.value) - SUM(e.value) from movements i, movements e where i.date BETWEEN :start AND :end AND i.income = 1 AND e.date BETWEEN :start AND :end AND e.income = 0")
     fun totalInPeriod(start: Long, end: Long): LiveData<Double>
 }

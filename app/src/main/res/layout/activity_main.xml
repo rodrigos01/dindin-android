@@ -22,16 +22,58 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+                android:layout_height="?attr/actionBarSize"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp">
 
-                <TextView
-                    android:id="@+id/month_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewModel.monthString}"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    tools:text="July, 2016" />
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/previous"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@null"
+                        android:src="@drawable/ic_chevron_left_white_24dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/month_label"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/month_label" />
+
+                    <TextView
+                        android:id="@+id/month_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@{viewModel.monthString}"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/next"
+                        app:layout_constraintStart_toEndOf="@+id/previous"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="July, 2016" />
+
+                    <ImageButton
+                        android:id="@+id/next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@null"
+                        android:src="@drawable/ic_chevron_right_white_24dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/month_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/month_label" />
+
+                </android.support.constraint.ConstraintLayout>
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>
@@ -59,8 +101,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@color/white"
-            android:elevation="20dp"
-            android:layout_gravity="bottom"
+            app:layout_behavior="@string/bottom_sheet_behavior"
             android:padding="16dp">
 
             <TextView
@@ -76,7 +117,9 @@
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.total}"
                 android:textColor="@{viewModel.valueColor}"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:textColor="@color/income"
+                tools:text="R$ 1345" />
 
         </LinearLayout>
 
