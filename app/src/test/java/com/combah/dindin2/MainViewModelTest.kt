@@ -64,17 +64,8 @@ class MainViewModelTest {
     }
 
     @Test
-    fun shouldObserveMovementsInPeriodWhenPeriodSet() {
-        val viewModel = MainViewModel(repository)
-        setPeriod(viewModel)
-
-        verify(movementListLiveData).observeForever(any())
-    }
-
-    @Test
     fun shouldUpdateMovementsWhenPeriodSet() {
         val viewModel = MainViewModel(repository)
-        Assert.assertEquals(0, viewModel.movements.size)
         setPeriod(viewModel)
         Assert.assertEquals(movementList, viewModel.movements.value)
     }
