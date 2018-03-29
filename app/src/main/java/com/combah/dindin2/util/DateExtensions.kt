@@ -1,5 +1,7 @@
 package com.combah.dindin2.util
 
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 fun Date.getInitialDateOfMonth(): Date {
@@ -40,4 +42,8 @@ fun Calendar.setTimeToEndOfDay() {
 
 fun Calendar.move(field: Int, offset: Int) {
     set(field, get(field) + offset)
+}
+
+fun Date.dateString(format: Int = DateFormat.SHORT): String {
+    return SimpleDateFormat.getDateInstance(format).format(this)
 }

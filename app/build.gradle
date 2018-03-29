@@ -46,7 +46,14 @@ dependencies {
 
     implementation "android.arch.persistence.room:runtime:1.1.0-beta1"
     kapt "android.arch.persistence.room:compiler:1.1.0-beta1"
+
+    // Dagger
+    implementation 'com.google.dagger:dagger:2.7'
+    kapt 'com.google.dagger:dagger-compiler:2.7'
+    compileOnly 'org.glassfish:javax.annotation:10.0-b28'
 }
 repositories {
     mavenCentral()
 }
+
+apply plugin: 'kotlin-android-extensions'
