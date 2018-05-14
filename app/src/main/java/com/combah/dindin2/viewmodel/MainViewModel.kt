@@ -12,7 +12,7 @@ class MainViewModel @Inject constructor(private val repository: MovementReposito
 
     private val initialTime = MutableLiveData(Calendar.getInstance().time.getInitialDateOfMonth())
     private val endTime = MutableLiveData(Calendar.getInstance().time.getEndDateOfMonth())
-    private val dates = initialTime.with(endTime) { initial, end -> Pair(initial?.time, end?.time) }
+    private val dates = initialTime.with(endTime) { initial, end -> Pair(initial, end) }
             .map { it?.takeIfHasBoth() }
     val movements = dates.then { it?.let { repository.movementsInPeriod(it.first, it.second) } }
             .asLiveList()
@@ -22,6 +22,7 @@ class MainViewModel @Inject constructor(private val repository: MovementReposito
     val expenses = dates.then { it?.let { repository.expenseInPeriod(it.first, it.second) } }
             .map { it?.asCurrency() }
     val total = dates.then { it?.let { repository.totalInPeriod(it.first, it.second) } }
+            .map { it ?: 0.0 }
 
     val monthString = initialTime.map { it?.let { makeMonthString(it) } }
 
@@ -35,8 +36,8 @@ class MainViewModel @Inject constructor(private val repository: MovementReposito
 
     private fun movePeriod(offset: Int) {
         dates.observeOnce {
-            val initial = it?.first?.let { Date(it) }?.asCalendar()?.apply { move(Calendar.MONTH, offset) }?.time
-            val end = it?.second?.let { Date(it) }?.asCalendar()?.apply { move(Calendar.MONTH, offset) }?.time
+            val initial = it?.first?.asCalendar()?.apply { move(Calendar.MONTH, offset) }?.time
+            val end = it?.second?.asCalendar()?.apply { move(Calendar.MONTH, offset) }?.time
             if (initial != null && end != null) {
                 setPeriod(initial, end)
             }

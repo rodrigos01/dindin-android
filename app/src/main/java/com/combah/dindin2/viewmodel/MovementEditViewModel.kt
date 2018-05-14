@@ -4,8 +4,9 @@ import android.arch.lifecycle.ViewModel
 import com.combah.dindin2.data.Movement
 import com.combah.dindin2.repository.MovementRepository
 import java.util.*
+import javax.inject.Inject
 
-class MovementEditViewModel(private val movementRepository: MovementRepository) : ViewModel() {
+class MovementEditViewModel @Inject constructor(private val movementRepository: MovementRepository) : ViewModel() {
 
     var date = Date()
     var income = false
@@ -27,7 +28,12 @@ class MovementEditViewModel(private val movementRepository: MovementRepository) 
     }
 
     fun save() {
-
+        movementRepository.saveMovement(Movement(
+                date = date,
+                income = income,
+                description = description,
+                value = _value)
+        )
     }
 
 }

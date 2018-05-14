@@ -16,7 +16,7 @@ fun setTextColor(view: TextView, resId: Int) {
 
 @BindingAdapter("currencyValue")
 fun setCurrencyValue(view: TextView, value: Double?) {
-    value?.asCurrency()?.let { view.text = it }
+    view.text = value?.asCurrency()
 }
 
 @BindingAdapter("valueColor")
@@ -24,12 +24,23 @@ fun valueForColor(view: TextView, value: Double?) {
     if (value == null) {
         return
     }
-    val colorResId = when {
-        value < 0 -> R.color.income
-        value > 0 -> R.color.expense
-        else -> R.color.colorPrimary
+    setTextColor(view, when {
+        value > 0 -> R.color.income
+        value < 0 -> R.color.expense
+        else -> R.color.textColor
+    })
+}
+
+@BindingAdapter("booleanColor")
+fun booleanForColor(view: TextView, value: Boolean?) {
+    if (value == null) {
+        return
     }
-    setTextColor(view, colorResId)
+    setTextColor(view, if (value) {
+        R.color.income
+    } else {
+        R.color.expense
+    })
 }
 
 @BindingAdapter("bind:visible")

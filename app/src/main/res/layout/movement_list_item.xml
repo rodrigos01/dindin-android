@@ -45,7 +45,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             app:currencyValue="@{viewModel.value}"
-            app:valueColor="@{viewModel.value}"
+            app:booleanColor="@{viewModel.income}"
             android:textSize="16sp"
             tools:text="R$ 300,00" />
 

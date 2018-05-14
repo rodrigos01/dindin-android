@@ -1,6 +1,7 @@
 package com.combah.dindin2.view
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         val viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(MainViewModel::class.java)
 
+        binding.setLifecycleOwner(this)
         binding.viewModel = viewModel
 
         binding.previous.setOnClickListener { viewModel.previousPeriod() }
@@ -35,5 +37,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.movementList.adapter = MovementsAdapter(this, viewModel.movements)
 
+        binding.fab.setOnClickListener { launchMovementActivity() }
+
+    }
+
+    private fun launchMovementActivity() {
+        startActivity(Intent(this, MovementEditActivity::class.java))
     }
 }
