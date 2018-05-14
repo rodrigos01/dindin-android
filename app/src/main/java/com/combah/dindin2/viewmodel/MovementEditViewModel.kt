@@ -1,6 +1,6 @@
 package com.combah.dindin2.viewmodel
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.combah.dindin2.data.Movement
 import com.combah.dindin2.repository.MovementRepository
 import java.util.*

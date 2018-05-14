@@ -1,9 +1,9 @@
 package com.combah.dindin2.view
 
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import com.combah.dindin2.DindinApplication
 import com.combah.dindin2.R
 import com.combah.dindin2.databinding.ActivityMovementBinding

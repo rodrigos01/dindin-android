@@ -1,6 +1,6 @@
 package com.combah.dindin2.repository
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.combah.dindin2.data.Movement
 import java.util.*
 

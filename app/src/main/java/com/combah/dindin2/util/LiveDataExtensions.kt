@@ -1,8 +1,8 @@
 package com.combah.dindin2.util
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 
 fun <T, R> LiveData<T>.map(block: (T?) -> R?): LiveData<R> {
     val newLiveData = MutableLiveData<R>()

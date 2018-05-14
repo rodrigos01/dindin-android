@@ -1,10 +1,9 @@
 package com.combah.dindin2.viewmodel
 
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.combah.dindin2.repository.MovementRepository
 import com.combah.dindin2.util.*
-import com.combah.travel.util.asLiveList
 import java.util.*
 import javax.inject.Inject
 

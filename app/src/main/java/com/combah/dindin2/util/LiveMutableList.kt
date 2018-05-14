@@ -1,7 +1,8 @@
 package com.combah.travel.util
 
 import android.os.Build
-import android.support.annotation.RequiresApi
+import androidx.annotation.RequiresApi
+import com.combah.dindin2.util.LiveList
 import java.util.function.Predicate
 import java.util.function.UnaryOperator
 

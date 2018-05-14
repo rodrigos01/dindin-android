@@ -1,13 +1,13 @@
 package com.combah.dindin2.view
 
-import android.arch.lifecycle.LifecycleOwner
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.RecyclerView
 import com.combah.dindin2.data.Movement
 import com.combah.dindin2.databinding.MovementListItemBinding
+import com.combah.dindin2.util.LiveList
 import com.combah.dindin2.viewmodel.MovementViewModel
-import com.combah.travel.util.LiveList
 
 class MovementsAdapter(lifecycleOwner: LifecycleOwner, private val movements: LiveList<Movement>)
     : RecyclerView.Adapter<BindingViewHolder<MovementListItemBinding>>() {

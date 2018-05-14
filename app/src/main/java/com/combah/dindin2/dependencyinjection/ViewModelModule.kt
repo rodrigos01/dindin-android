@@ -1,6 +1,6 @@
 package com.combah.dindin2.dependencyinjection
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.combah.dindin2.viewmodel.MainViewModel
 import com.combah.dindin2.viewmodel.MovementEditViewModel
 import dagger.Binds

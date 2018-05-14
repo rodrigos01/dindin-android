@@ -1,6 +1,6 @@
 package com.combah.dindin2.room
 
-import android.arch.persistence.room.TypeConverter
+import androidx.room.TypeConverter
 import java.util.*
 
 

@@ -1,9 +1,9 @@
 package com.combah.dindin2.room
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.combah.dindin2.data.Movement
 import com.combah.dindin2.room.dao.MovementDao
 import com.combah.dindin2.room.entities.RoomMovement

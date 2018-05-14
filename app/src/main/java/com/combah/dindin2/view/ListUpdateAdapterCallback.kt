@@ -1,7 +1,7 @@
 package com.combah.dindin2.view
 
-import android.support.v7.util.ListUpdateCallback
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.ListUpdateCallback
+import androidx.recyclerview.widget.RecyclerView
 
 class ListUpdateAdapterCallback(private val adapter: RecyclerView.Adapter<*>) : ListUpdateCallback {
     override fun onChanged(position: Int, count: Int, payload: Any?) {

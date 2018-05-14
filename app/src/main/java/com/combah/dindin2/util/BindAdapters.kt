@@ -1,11 +1,11 @@
 package com.combah.dindin2.util
 
-import android.databinding.BindingAdapter
-import android.support.design.widget.FloatingActionButton
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.databinding.BindingAdapter
 import com.combah.dindin2.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 
 @BindingAdapter("android:textColor")

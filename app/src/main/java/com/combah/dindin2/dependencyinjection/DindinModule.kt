@@ -1,7 +1,7 @@
 package com.combah.dindin2.dependencyinjection
 
-import android.arch.persistence.room.Room
 import android.content.Context
+import androidx.room.Room
 import com.combah.dindin2.repository.MovementRepository
 import com.combah.dindin2.room.DinDinRoomDatabase
 import com.combah.dindin2.room.RoomMovementRepository

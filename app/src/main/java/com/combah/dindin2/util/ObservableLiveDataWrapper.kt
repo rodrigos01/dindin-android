@@ -1,7 +1,7 @@
 package com.combah.dindin2.util
 
-import android.arch.lifecycle.LiveData
-import android.databinding.ObservableField
+import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
 
 class ObservableLiveDataWrapper<T>(liveData: LiveData<T>) : ObservableField<T>() {
     init {

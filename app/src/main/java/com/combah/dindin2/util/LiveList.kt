@@ -1,10 +1,11 @@
-package com.combah.travel.util
+package com.combah.dindin2.util
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Observer
-import android.support.v7.util.DiffUtil
-import android.support.v7.util.ListUpdateCallback
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListUpdateCallback
+import com.combah.travel.util.LiveMutableList
 
 abstract class LiveList<E>(private val diffCallback: DiffCallback<E>? = null) : LiveData<List<E>>(), List<E> {
 
